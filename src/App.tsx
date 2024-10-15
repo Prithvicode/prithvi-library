@@ -1,11 +1,21 @@
-import { useEffect, useState } from "react";
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useBook, BookProvider } from "./store";
 
+const SearchBox = () => {
+  const { search, setSearch } = useBook();
+  return (
+    <input
+      type="text"
+      placeholder="Search Books... "
+      value={search}
+      className="w-[400px] p-4 "
+      onChange={(e) => setSearch(e.target.value)}
+    />
+  );
+};
 const BookList = () => {
   const { book } = useBook();
   return (
-    <ul className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-6 mt-3">
+    <ul className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-6 mt-3 bg-white/5 p-4 w-full rounded-lg ">
       {book.map((b) => (
         <li
           key={b.title}
@@ -21,9 +31,21 @@ const BookList = () => {
 
 function App() {
   return (
-    <BookProvider>
-      <BookList />
-    </BookProvider>
+    <>
+      <BookProvider>
+        <SearchBox />
+        <div
+          className="h-80 flex items-center justify-center p-6 bg-white/10"
+          style={{
+            background:
+              "radial-gradient(ellipse 30% 50% at center , #4f4f4f, #333333, #000000)",
+            boxShadow: "0 0 100px 50px rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <BookList />
+        </div>
+      </BookProvider>
+    </>
   );
 }
 

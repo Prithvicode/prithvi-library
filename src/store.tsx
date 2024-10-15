@@ -1,5 +1,12 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+} from "react";
 
 const supabase: SupabaseClient = createClient(
   import.meta.env.VITE_SUPABASE_URL as string,
@@ -16,25 +23,37 @@ interface Book {
   status: string;
 }
 
+// provide access to books
+// provide the searched book
+// prodive func to set searchinput.
+
 function useBookSource(): {
   book: Book[];
+  search: string;
+  setSearch: (searchInput: string) => void;
 } {
   type BookState = {
     book: Book[];
+    search: string;
   };
 
-  type BookAction = { type: "setBook"; payload: Book[] }; // setSearch actions
+  type BookAction =
+    | { type: "setBook"; payload: Book[] }
+    | { type: "setSearch"; payload: string };
 
-  const [{ book }, dispatch] = useReducer(
+  const [{ book, search }, dispatch] = useReducer(
     // callback
     (state: BookState, action: BookAction) => {
       switch (action.type) {
         case "setBook":
           return { ...state, book: action.payload };
+        // search action
+        case "setSearch":
+          return { ...state, search: action.payload };
       }
     },
     // initial state
-    { book: [] }
+    { book: [], search: "" }
   );
 
   useEffect(() => {
@@ -54,7 +73,17 @@ function useBookSource(): {
     fetchBooks();
   }, []);
 
-  return { book };
+  const setSearch = useCallback((searchInput: string) => {
+    dispatch({ type: "setSearch", payload: searchInput });
+  }, []);
+
+  const filteredBook = useMemo(
+    () =>
+      book.filter((b) => b.title.toLowerCase().includes(search.toLowerCase())),
+    [book, search]
+  );
+
+  return { book: filteredBook, search, setSearch };
 }
 
 const BookContext = createContext<ReturnType<typeof useBookSource>>(

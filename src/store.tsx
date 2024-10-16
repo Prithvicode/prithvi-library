@@ -16,6 +16,7 @@ const supabase: SupabaseClient = createClient(
 );
 
 interface Book {
+  id: number;
   title: string;
   image: string;
   viewcount: number;
@@ -42,6 +43,7 @@ function useBookSource(): {
       if (error) {
         throw new Error(error.message);
       }
+      console.log(data);
       return data;
     },
     {

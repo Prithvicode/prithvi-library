@@ -8,6 +8,8 @@ import {
   useReducer,
 } from "react";
 
+import { useQuery } from "@tanstack/react-query";
+
 const supabase: SupabaseClient = createClient(
   import.meta.env.VITE_SUPABASE_URL as string,
   import.meta.env.VITE_SUPABASE_ANON_KEY as string
@@ -23,7 +25,8 @@ interface Book {
   status: string;
 }
 
-// provide access to books
+// useQuery to setup the global state of books
+// provide books from that global state.
 // provide the searched book
 // prodive func to set searchinput.
 
@@ -32,45 +35,54 @@ function useBookSource(): {
   search: string;
   setSearch: (searchInput: string) => void;
 } {
+  const { data: book, error } = useQuery(
+    ["book"], // Query key
+    async () => {
+      const { data, error } = await supabase.from("prithviBooks").select("*");
+      if (error) {
+        throw new Error(error.message);
+      }
+      return data;
+    },
+    {
+      initialData: [],
+    }
+  );
+
   type BookState = {
-    book: Book[];
+    // book: Book[];
     search: string;
   };
 
-  type BookAction =
-    | { type: "setBook"; payload: Book[] }
-    | { type: "setSearch"; payload: string };
+  type BookAction = { type: "setSearch"; payload: string };
 
-  const [{ book, search }, dispatch] = useReducer(
+  const [{ search }, dispatch] = useReducer(
     // callback
     (state: BookState, action: BookAction) => {
       switch (action.type) {
-        case "setBook":
-          return { ...state, book: action.payload };
+        // case "setBook":
+        //   return { ...state, book: action.payload };
         // search action
         case "setSearch":
           return { ...state, search: action.payload };
       }
     },
     // initial state
-    { book: [], search: "" }
+    { search: "" }
   );
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const { data, error } = await supabase.from("prithviBooks").select("*");
-
-      if (error) {
-        console.error("Error fetching books:", error);
-        return;
-      }
-
-      if (data) {
-        dispatch({ type: "setBook", payload: data });
-      }
-    };
-
-    fetchBooks();
+    //   const fetchBooks = async () => {
+    //     const { data, error } = await supabase.from("prithviBooks").select("*");
+    //     if (error) {
+    //       console.error("Error fetching books:", error);
+    //       return;
+    //     }
+    //     if (data) {
+    //       dispatch({ type: "setBook", payload: data });
+    //     }
+    //   };
+    //   fetchBooks();
   }, []);
 
   const setSearch = useCallback((searchInput: string) => {

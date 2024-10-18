@@ -15,7 +15,7 @@ const BookDetail: React.FunctionComponent<IBookDetailProps> = (props) => {
   }
 
   return (
-    <div className="text-black min-w-[400px] md:w-[700px] h-full p-4 sm:p-1">
+    <div className="text-black min-w-[400px] md:w-[700px] h-full p-4 sm:p-1 mx-auto mx-w-3xl">
       <Link to="/">
         <h1 className="text-lg font-medium hover:text-xl">&larr; Home</h1>
       </Link>

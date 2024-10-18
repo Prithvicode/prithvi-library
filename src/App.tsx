@@ -8,6 +8,7 @@ import HomePage from "./HomePage";
 import Header from "./sections/Header";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Slider from "./components/Slider";
 
 // const queryClient = new QueryClient();
 const location = new ReactLocation();
@@ -17,6 +18,7 @@ const routes = [
     element: (
       <>
         <HomePage />
+        <Slider />
       </>
     ),
   },
@@ -35,9 +37,7 @@ function App() {
     <Provider store={store}>
       <Router location={location} routes={routes}>
         <Header />
-        <div className="mx-auto max-w-3xl ">
-          <Outlet />
-        </div>
+        <Outlet />
       </Router>
     </Provider>
   );

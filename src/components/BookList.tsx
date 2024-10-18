@@ -6,12 +6,17 @@ import { Link } from "@tanstack/react-location";
 interface IBookListProps {}
 
 const BookList: React.FunctionComponent<IBookListProps> = (props) => {
-  const book = useSelector(selectBookData);
+  const books = useSelector(selectBookData); // Fetching book data
+
   return (
-    <>
-      <section className="relative ">
-        <ul className="relative grid  gap-6 max-sm: grid-cols-2 md:grid-cols-6 mt-3 p-3 bg-s1 w-full rounded-lg shadow-xl">
-          {book.slice(0, 12).map((b) => (
+    <section className="relative">
+      {books.length === 0 ? (
+        <div className="text-center p-4 text-black bg-s1/30  h-[200px] rounded-lg max-sm:mx-5">
+          Not Found
+        </div>
+      ) : (
+        <ul className="relative grid gap-6 max-sm:grid-cols-2 md:grid-cols-6 mt-3 p-3 bg-s1/30 w-full rounded-lg shadow-md">
+          {books.slice(0, 12).map((b) => (
             <Link key={b.id} to={`/book/${b.id}`}>
               <li
                 key={b.title}
@@ -24,7 +29,7 @@ const BookList: React.FunctionComponent<IBookListProps> = (props) => {
                   style={{ aspectRatio: "2 / 3" }}
                 />
                 <div className="absolute inset-0 h-full group-hover:flex items-end justify-center bg-gradient-to-b from-transparent to-a1 text-white text-sm font-medium p-3 hidden">
-                  <span className="text-left overflow-hidden text-ellipsis whitespace-nowrap ">
+                  <span className="text-left overflow-hidden text-ellipsis whitespace-nowrap">
                     {b.title}
                   </span>
                 </div>
@@ -32,8 +37,8 @@ const BookList: React.FunctionComponent<IBookListProps> = (props) => {
             </Link>
           ))}
         </ul>
-      </section>
-    </>
+      )}
+    </section>
   );
 };
 

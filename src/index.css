@@ -18,6 +18,9 @@
     background: linear-gradient(to left, #d29524, #e2d98b, #e2e6b4, #eaf1db);
   }
   .g2 {
-    background-image: linear-gradient(to right, #d29524, #dac77d, white);
+    background: linear-gradient(to right, #d29524, #dac77d, white);
+  }
+  .g3 {
+    border-image: linear-gradient(to left, transparent, white);
   }
 }

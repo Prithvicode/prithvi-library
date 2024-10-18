@@ -6,12 +6,18 @@
 
 @layer base {
   body {
-    @apply bg-gray-500 font-poppins;
+    @apply font-poppins;
+  }
+  p {
+    @apply leading-[1.75em];
   }
 }
 
 @layer utilities {
   .g1 {
-    background: linear-gradient(to left, #0b65ec, #a6dac3);
+    background: linear-gradient(to left, #d29524, #e2d98b, #e2e6b4, #eaf1db);
+  }
+  .g2 {
+    background-image: linear-gradient(to right, #d29524, #dac77d, white);
   }
 }

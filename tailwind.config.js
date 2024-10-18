@@ -4,8 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        p1: "#2B71BC",
-        s1: "#ff7e69",
+        p1: "#F1B637",
+        s1: "#ffb660",
+        a1: "#924e00",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

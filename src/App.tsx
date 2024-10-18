@@ -9,7 +9,7 @@ import Header from "./sections/Header";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 const location = new ReactLocation();
 const routes = [
   {
@@ -35,7 +35,7 @@ function App() {
     <Provider store={store}>
       <Router location={location} routes={routes}>
         <Header />
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl ">
           <Outlet />
         </div>
       </Router>

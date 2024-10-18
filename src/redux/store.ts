@@ -71,6 +71,11 @@ export type RootState = ReturnType<typeof store.getState>;
 
 // Selectors
 export const selectSearch = (state: RootState) => state.search.search;
+// In books List
+// const  filterBooks = userMemo(()=>(
+// (books || []).filter((books) = >  pokemon.name.toLowerCase().include(search))
+// ),[books,search])
+// reference.
 
 export const selectBookData = createSelector(
   (state: RootState) =>

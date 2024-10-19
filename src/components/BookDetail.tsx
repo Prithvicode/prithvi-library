@@ -7,8 +7,8 @@ interface IBookDetailProps {}
 
 const BookDetail: React.FunctionComponent<IBookDetailProps> = (props) => {
   const { id } = useMatch().params;
-  const book = useSelector(selectBookData);
-  const bookDetail = book.find((b) => b.id === parseInt(id, 10));
+  const { books } = useSelector(selectBookData);
+  const bookDetail = books.find((b) => b.id === parseInt(id, 10));
 
   if (!bookDetail) {
     return <div>No Book found</div>;

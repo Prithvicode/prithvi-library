@@ -6,16 +6,16 @@ import { Link } from "@tanstack/react-location";
 interface IBookListProps {}
 
 const BookList: React.FunctionComponent<IBookListProps> = (props) => {
-  const books = useSelector(selectBookData); // Fetching book data
+  const { books } = useSelector(selectBookData); // Fetching book data
 
   return (
     <section className="relative">
       {books.length === 0 ? (
-        <div className="text-center p-4 text-black bg-s1/30  h-[200px] rounded-lg max-sm:mx-5">
+        <div className="text-center p-4 text-black bg-s1  h-[200px] rounded-lg max-sm:mx-5">
           Not Found
         </div>
       ) : (
-        <ul className="relative grid gap-6 max-sm:grid-cols-2 md:grid-cols-6 mt-3 p-3 bg-s1/30 w-full rounded-lg shadow-md">
+        <ul className="relative grid gap-6 max-sm:grid-cols-2 md:grid-cols-6 mt-3 p-3 bg-s1 w-full rounded-lg shadow-md">
           {books.slice(0, 12).map((b) => (
             <Link key={b.id} to={`/book/${b.id}`}>
               <li

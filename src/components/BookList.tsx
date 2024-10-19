@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import { selectBookData } from "../redux/store";
 import { Link } from "@tanstack/react-location";
 
-interface IBookListProps {}
-
-const BookList: React.FunctionComponent<IBookListProps> = (props) => {
+const BookList: React.FunctionComponent = () => {
   const { books } = useSelector(selectBookData); // Fetching book data
 
   return (

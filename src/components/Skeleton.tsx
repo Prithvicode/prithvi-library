@@ -1,8 +1,6 @@
 import * as React from "react";
 
-interface ISkeletonProps {}
-
-const Skeleton: React.FunctionComponent<ISkeletonProps> = (props) => {
+const Skeleton: React.FunctionComponent = () => {
   const skeletonBooks = Array.from({ length: 12 }, (_, index) => index + 1);
   return (
     <>

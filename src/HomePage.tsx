@@ -7,9 +7,7 @@ import Skeleton from "./components/Skeleton";
 import { useSelector } from "react-redux";
 import { selectBookData } from "./redux/store";
 
-interface IHomePageProps {}
-
-const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
+const HomePage: React.FunctionComponent = () => {
   const { isLoading } = useSelector(selectBookData);
 
   return (

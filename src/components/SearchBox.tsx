@@ -4,9 +4,7 @@ import { selectSearch, setSearch } from "../redux/store";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 // import { useBook } from "../store";
 
-interface ISearchBoxProps {}
-
-const SearchBox: React.FunctionComponent<ISearchBoxProps> = (props) => {
+const SearchBox: React.FunctionComponent = () => {
   // const { search, setSearch } = useBook();
   const search = useSelector(selectSearch);
   const dispatch = useDispatch();

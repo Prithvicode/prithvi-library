@@ -3,9 +3,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { selectBookData } from "../redux/store";
 
-interface IBookDetailProps {}
-
-const BookDetail: React.FunctionComponent<IBookDetailProps> = (props) => {
+const BookDetail: React.FunctionComponent = () => {
   const { id } = useMatch().params;
   const { books } = useSelector(selectBookData);
   const bookDetail = books.find((b) => b.id === parseInt(id, 10));

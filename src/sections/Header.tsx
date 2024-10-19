@@ -3,9 +3,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { setSearch } from "../redux/store";
 
-interface IHeaderProps {}
-
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+const Header: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   const handleHomeClick = () => {

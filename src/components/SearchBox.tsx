@@ -19,7 +19,7 @@ const SearchBox: React.FunctionComponent = () => {
     <>
       <div className="relative group m-3 mb-5">
         {/* <div className="absolute mx-auto w-[400px] inset-0 group-focus-within:block hidden rounded-lg blur-md g1 group-focus-within:transition group-focus-within:duration-1000"></div> */}
-        <div className="flex rounded-lg w-[430px] mx-auto px-3 border-2 border-p1 group-focus-within:border-a1 bg-white justify-center items-center">
+        <div className="flex rounded-lg max-w-[430px] w-full mx-auto px-3 border-2 border-p1 group-focus-within:border-a1 bg-white justify-center items-center">
           <MagnifyingGlassIcon className="size-7 text-p1  group-focus-within:text-a1" />
           <input
             type="text"

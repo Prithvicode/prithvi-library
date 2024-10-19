@@ -12,8 +12,9 @@ const HomePage: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto md:max-w-3xl max-sm:w-full">
         <SearchBox />
+
         {isLoading ? (
           <Skeleton />
         ) : (
